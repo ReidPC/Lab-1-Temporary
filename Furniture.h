@@ -6,37 +6,36 @@ protected:
     std::string name;
     double price;
     int quantity;
-    int inventoryID;  // New attribute for unique inventory ID
-
-private:
-    static int nextID;  // Static class variable to generate unique IDs
+    std::string material;
+    std::string style;
+    int age;
 
 public:
     // Constructor to assign inventory ID and increment nextID
-    Furniture(std::string n, double p, int q)
-        : name(n), price(p), quantity(q), inventoryID(nextID++) {}
-
-    // Virtual destructor to ensure proper cleanup in derived classes
-    virtual ~Furniture() {}
+    Furniture(std::string n, double p, int q, std::string m, std::string s, int a)
+        : name(n), price(p), quantity(q), material(m), style(s), age(a) {}
 
     // Getters
     std::string getName() const { return name; }
     double getPrice() const { return price; }
     int getQuantity() const { return quantity; }
-    int getInventoryID() const { return inventoryID; }  // Getter for inventoryID
+    std::string getMaterial() const { return material; }
+    std::string getStyle() const { return style; }
+    int getAge() const { return age; }
 
     // Setters
     void setName(const std::string& n) { name = n; }
     void setPrice(double p) { price = p; }
     void setQuantity(int q) { quantity = q; }
+    void setMaterial(const std::string& m) { material = m; }
+    void setStyle(const std::string& s) { style = s; }
+    void setAge(int a) { age = a; }
+
 
     // Virtual display method
     virtual void display() const {
-        std::cout << "Inventory ID: " << inventoryID << std::endl;
         std::cout << "Name: " << name << ", Price: $" << price
-                  << ", Quantity: " << quantity << std::endl;
+                  << ", Quantity: " << quantity << ", Material: " << material << 
+                  ", Style: " << style << ", Age: " << age << std::endl;
     }
 };
-
-// Initialize static variable
-int Furniture::nextID = 1;
